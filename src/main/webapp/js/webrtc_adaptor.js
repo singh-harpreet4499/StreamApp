@@ -1141,7 +1141,7 @@ function WebRTCAdaptor(initialValues)
 				thiz.join(obj.streamId);
 			}
 			else if (obj.command == "peerMessageCommand") {
-				thiz.callback(obj);
+				thiz.callback("peerMessageCommand", obj);
 			}
 		}
 
