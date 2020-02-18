@@ -60,6 +60,15 @@
 	<div class="container" style="padding: 40px 15px; text-align: center">
 		<div class="input-group col-sm-offset-2 col-sm-8">
 			<span class="input-group-btn">
+				<input type="text" class="form-control" value="rtsp://172.17.0.1:6554/test.flv" id="rtspUrl" placeholder="RTSP URL">
+				<button onclick="play()" class="btn btn-default" id="play_button">Play</button>
+			</span>	
+		</div>
+	</div>
+	
+	<div class="container" style="padding: 40px 15px; text-align: center">
+		<div class="input-group col-sm-offset-2 col-sm-8">
+			<span class="input-group-btn">
 				<input type="text" class="form-control" value="0:0" id="time" placeholder="Time">
 				<button onclick="seek()" class="btn btn-default" id="seek_button">Seek</button>
 			</span>	
@@ -73,6 +82,8 @@
 	var vod_list_button = document.getElementById("vod_list_button");
 	var streamNameBox = document.getElementById("streamName");
 	var timeBox = document.getElementById("time");
+	var rtspUrlBox = document.getElementById("rtspUrl");
+
 
 	function fileSelected() {
 		var selectedFile = document.getElementById("vodList").value;
@@ -101,6 +112,11 @@
 		
 		webRTCAdaptor.peerMessage(webRTCAdaptor.multiPeerStreamId,
 				"seek", timeSec);	
+	}
+	
+	function play() {
+		webRTCAdaptor.peerMessage(webRTCAdaptor.multiPeerStreamId, "playFile",
+				rtspUrlBox.value);
 	}
 
 	function vodListResponse(vodFileList) {
