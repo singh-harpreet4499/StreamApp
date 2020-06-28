@@ -100,6 +100,12 @@ public class StreamApplication extends MultiThreadedApplicationAdapter implement
 		appAdaptor.streamPublishStart(stream);
 		super.streamPublishStart(stream);
 	}
+	
+	@Override
+	public void appStop(IScope app) {
+		super.appStop(app);
+		appAdaptor.appStop(app);
+	}
 
 	public ApplicationContext getAppContx() {
 		return appContx;
